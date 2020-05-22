@@ -1,0 +1,564 @@
+    1 +-main() <int main () at main.cpp:10>
+    2   +-event_base_new() <struct event_base *event_base_new (void) at src/event.c:520>
+    3   | +-event_config_new() <struct event_config *event_config_new (void) at src/event.c:1142>
+    4   | | +-mm_calloc()
+    5   | | \-TAILQ_INIT()
+    6   | +-event_base_new_with_config() <struct event_base *event_base_new_with_config (const struct event_config *cfg) at src/event.c:605>
+    7   | | +-mm_calloc()
+    8   | | +-event_warn() <void event_warn (const char *fmt, ...) at src/log.c:113>
+    9   | | | +-va_start()
+   10   | | | +-event_logv_() <void event_logv_ (int severity, const char *errstr, const char *fmt, va_list ap) at src/log.c:187>
+   11   | | | | +-event_debug_get_logging_mask_()
+   12   | | | | +-evutil_vsnprintf() <int evutil_vsnprintf (char *buf, size_t buflen, const char *format, va_list ap) at src/evutil.c:1862>
+   13   | | | | | \-vsnprintf()
+   14   | | | | +-strlen()
+   15   | | | | +-evutil_snprintf() <int evutil_snprintf (char *buf, size_t buflen, const char *format, ...) at src/evutil.c:1851>
+   16   | | | | | +-va_start()
+   17   | | | | | +-evutil_vsnprintf() <int evutil_vsnprintf (char *buf, size_t buflen, const char *format, va_list ap) at src/evutil.c:1862> [see 12]
+   18   | | | | | \-va_end()
+   19   | | | | \-event_log() <void event_log (int severity, const char *msg) at src/log.c:219>
+   20   | | | |   +-log_fn() <event_log_cb log_fn at src/log.c:210>
+   21   | | | |   \-fprintf()
+   22   | | | +-strerror()
+   23   | | | \-va_end()
+   24   | | +-evutil_getenv_() <const char *evutil_getenv_ (const char *varname) at src/evutil.c:2417>
+   25   | | | +-evutil_issetugid() <int evutil_issetugid (void) at src/evutil.c:2398>
+   26   | | | | +-issetugid()
+   27   | | | | +-getuid()
+   28   | | | | +-geteuid()
+   29   | | | | +-getgid()
+   30   | | | | \-getegid()
+   31   | | | \-getenv()
+   32   | | +-evutil_configure_monotonic_time_() <int evutil_configure_monotonic_time_ (struct evutil_monotonic_timer *base, int precise) at src/evutil_time.c:562>
+   33   | | | +-event_errx() <void event_errx (int eval, const char *fmt, ...) at src/log.c:146>
+   34   | | | | +-va_start()
+   35   | | | | +-event_logv_() <void event_logv_ (int severity, const char *errstr, const char *fmt, va_list ap) at src/log.c:187> [see 10]
+   36   | | | | +-va_end()
+   37   | | | | \-event_exit() <void event_exit (int errcode) at src/log.c:90>
+   38   | | | |   +-fatal_fn() <event_fatal_cb fatal_fn at src/log.c:63>
+   39   | | | |   +-exit()
+   40   | | | |   \-abort()
+   41   | | | +-clock_gettime()
+   42   | | | +-memset()
+   43   | | | +-mach_timebase_info()
+   44   | | | +-mach_absolute_time()
+   45   | | | +-memcpy()
+   46   | | | +-evutil_load_windows_system_library_() <HMODULE evutil_load_windows_system_library_ (const TCHAR *library_name) at src/evutil.c:2527>
+   47   | | | | +-GetSystemDirectory()
+   48   | | | | +-TEXT()
+   49   | | | | \-LoadLibrary()
+   50   | | | +-TEXT()
+   51   | | | +-GetProcAddress()
+   52   | | | +-evutil_GetTickCount_() <ev_uint64_t evutil_GetTickCount_ (struct evutil_monotonic_timer *base) at src/evutil_time.c:445>
+   53   | | | | \-GetTickCount()
+   54   | | | +-QueryPerformanceFrequency()
+   55   | | | \-QueryPerformanceCounter()
+   56   | | +-gettime() <int gettime (struct event_base *base, struct timeval *tp) at src/event.c:413>
+   57   | | | +-EVENT_BASE_ASSERT_LOCKED()
+   58   | | | +-evutil_gettime_monotonic_() <int evutil_gettime_monotonic_ (struct evutil_monotonic_timer *base, struct timeval *tp) at src/evutil_time.c:570>
+   59   | | | | +-evutil_gettimeofday() <int evutil_gettimeofday (struct timeval *tv, struct timezone *tz) at src/evutil_time.c:69>
+   60   | | | | | +-GetSystemTimeAsFileTime()
+   61   | | | | | \-EVUTIL_UNLIKELY()
+   62   | | | | +-adjust_monotonic_time() <void adjust_monotonic_time (struct evutil_monotonic_timer *base, struct timeval *tv) at src/evutil_time.c:189>
+   63   | | | | | +-evutil_timeradd()
+   64   | | | | | +-evutil_timercmp()
+   65   | | | | | \-evutil_timersub()
+   66   | | | | +-clock_gettime()
+   67   | | | | +-mach_absolute_time()
+   68   | | | | +-evutil_GetTickCount_() <ev_uint64_t evutil_GetTickCount_ (struct evutil_monotonic_timer *base) at src/evutil_time.c:445> [see 52]
+   69   | | | | +-QueryPerformanceCounter()
+   70   | | | | \-abs64() <inline ev_int64_t abs64 (ev_int64_t i) at src/evutil_time.c:503>
+   71   | | | +-evutil_gettimeofday() <int evutil_gettimeofday (struct timeval *tv, struct timezone *tz) at src/evutil_time.c:69> [see 59]
+   72   | | | \-evutil_timersub()
+   73   | | +-min_heap_ctor_()
+   74   | | +-TAILQ_INIT()
+   75   | | +-evmap_io_initmap_() <void evmap_io_initmap_ (struct event_io_map *ctx) at src/evmap.c:189>
+   76   | | | +-HT_INIT()
+   77   | | | \-evmap_signal_initmap_() <void evmap_signal_initmap_ (struct event_signal_map *ctx) at src/evmap.c:235>
+   78   | | +-evmap_signal_initmap_() <void evmap_signal_initmap_ (struct event_signal_map *ctx) at src/evmap.c:235> [see 77]
+   79   | | +-event_changelist_init_()
+   80   | | +-memcpy()
+   81   | | +-event_config_is_avoided_method() <int event_config_is_avoided_method (const struct event_config *cfg, const char *method) at src/event.c:534>
+   82   | | | +-TAILQ_FOREACH()
+   83   | | | \-strcmp()
+   84   | | +-event_is_method_disabled() <int event_is_method_disabled (const char *name) at src/event.c:550>
+   85   | | | +-evutil_snprintf() <int evutil_snprintf (char *buf, size_t buflen, const char *format, ...) at src/evutil.c:1851> [see 15]
+   86   | | | +-EVUTIL_TOUPPER_() <char EVUTIL_TOUPPER_ (char c) at src/evutil.c:2341>
+   87   | | | \-evutil_getenv_() <const char *evutil_getenv_ (const char *varname) at src/evutil.c:2417> [see 24]
+   88   | | +-event_warnx() <void event_warnx (const char *fmt, ...) at src/log.c:157>
+   89   | | | +-va_start()
+   90   | | | +-event_logv_() <void event_logv_ (int severity, const char *errstr, const char *fmt, va_list ap) at src/log.c:187> [see 10]
+   91   | | | \-va_end()
+   92   | | +-event_base_free() <void event_base_free (struct event_base *base) at src/event.c:955>
+   93   | | | \-event_base_free_() <void event_base_free_ (struct event_base *base, int run_finalizers) at src/event.c:838>
+   94   | | |   +-event_warnx() <void event_warnx (const char *fmt, ...) at src/log.c:157> [see 88]
+   95   | | |   +-event_base_stop_iocp_() <void event_base_stop_iocp_ (struct event_base *base) at src/event.c:761>
+   96   | | |   | +-event_iocp_shutdown_() <int event_iocp_shutdown_ (struct event_iocp_port *port, long waitMsec) at src/event_iocp.c:250>
+   97   | | |   | | +-EnterCriticalSection()
+   98   | | |   | | +-LeaveCriticalSection()
+   99   | | |   | | +-event_iocp_notify_all() <int event_iocp_notify_all (struct event_iocp_port *port) at src/event_iocp.c:237>
+  100   | | |   | | | \-PostQueuedCompletionStatus()
+  101   | | |   | | +-WaitForSingleObject()
+  102   | | |   | | \-event_iocp_port_unlock_and_free_() <void event_iocp_port_unlock_and_free_ (struct event_iocp_port *port) at src/event_iocp.c:227>
+  103   | | |   | |   +-DeleteCriticalSection()
+  104   | | |   | |   +-CloseHandle()
+  105   | | |   | |   \-mm_free() <mm_free at src/evmap.c:112>
+  106   | | |   | \-EVUTIL_ASSERT()
+  107   | | |   +-event_del() <int event_del (struct event *ev) at src/event.c:2790>
+  108   | | |   | \-event_del_() <int event_del_ (struct event *ev, int blocking) at src/event.c:2772>
+  109   | | |   |   +-EVUTIL_FAILURE_CHECK()
+  110   | | |   |   +-event_warnx() <void event_warnx (const char *fmt, ...) at src/log.c:157> [see 88]
+  111   | | |   |   +-EVBASE_ACQUIRE_LOCK()
+  112   | | |   |   +-event_del_nolock_() <int event_del_nolock_ (struct event *ev, int blocking) at src/event.c:2813>
+  113   | | |   |   | +-event_debug()
+  114   | | |   |   | +-EV_SOCK_ARG()
+  115   | | |   |   | +-EVENT_BASE_ASSERT_LOCKED()
+  116   | | |   |   | +-EVUTIL_ASSERT()
+  117   | | |   |   | +-event_queue_remove_timeout() <void event_queue_remove_timeout (struct event_base *base, struct event *ev) at src/event.c:3270>
+  118   | | |   |   | | +-EVENT_BASE_ASSERT_LOCKED()
+  119   | | |   |   | | +-EVUTIL_FAILURE_CHECK()
+  120   | | |   |   | | +-event_errx() <void event_errx (int eval, const char *fmt, ...) at src/log.c:146> [see 33]
+  121   | | |   |   | | +-EV_SOCK_ARG()
+  122   | | |   |   | | +-DECR_EVENT_COUNT()
+  123   | | |   |   | | +-is_common_timeout() <inline int is_common_timeout (const struct timeval *tv, const struct event_base *base) at src/event.c:1414>
+  124   | | |   |   | | | \-COMMON_TIMEOUT_IDX()
+  125   | | |   |   | | +-get_common_timeout_list() <inline struct common_timeout_list *get_common_timeout_list (struct event_base *base, const struct timeval *tv) at src/event.c:1436>
+  126   | | |   |   | | | \-COMMON_TIMEOUT_IDX()
+  127   | | |   |   | | +-TAILQ_REMOVE()
+  128   | | |   |   | | \-min_heap_erase_()
+  129   | | |   |   | +-event_queue_remove_active() <void event_queue_remove_active (struct event_base *base, struct event_callback *evcb) at src/event.c:3239>
+  130   | | |   |   | | +-EVENT_BASE_ASSERT_LOCKED()
+  131   | | |   |   | | +-EVUTIL_FAILURE_CHECK()
+  132   | | |   |   | | +-event_errx() <void event_errx (int eval, const char *fmt, ...) at src/log.c:146> [see 33]
+  133   | | |   |   | | +-DECR_EVENT_COUNT()
+  134   | | |   |   | | \-TAILQ_REMOVE()
+  135   | | |   |   | +-event_to_event_callback() <inline struct event_callback *event_to_event_callback (struct event *ev) at src/event.c:499>
+  136   | | |   |   | +-event_queue_remove_active_later() <void event_queue_remove_active_later (struct event_base *base, struct event_callback *evcb) at src/event.c:3255>
+  137   | | |   |   | | +-EVENT_BASE_ASSERT_LOCKED()
+  138   | | |   |   | | +-EVUTIL_FAILURE_CHECK()
+  139   | | |   |   | | +-event_errx() <void event_errx (int eval, const char *fmt, ...) at src/log.c:146> [see 33]
+  140   | | |   |   | | +-DECR_EVENT_COUNT()
+  141   | | |   |   | | \-TAILQ_REMOVE()
+  142   | | |   |   | +-event_queue_remove_inserted() <void event_queue_remove_inserted (struct event_base *base, struct event *ev) at src/event.c:3227>
+  143   | | |   |   | | +-EVENT_BASE_ASSERT_LOCKED()
+  144   | | |   |   | | +-EVUTIL_FAILURE_CHECK()
+  145   | | |   |   | | +-event_errx() <void event_errx (int eval, const char *fmt, ...) at src/log.c:146> [see 33]
+  146   | | |   |   | | +-EV_SOCK_ARG()
+  147   | | |   |   | | \-DECR_EVENT_COUNT()
+  148   | | |   |   | +-evmap_io_del_() <int evmap_io_del_ (struct event_base *base, evutil_socket_t fd, struct event *ev) at src/evmap.c:354>
+  149   | | |   |   | | +-EVUTIL_ASSERT()
+  150   | | |   |   | | +-GET_IO_SLOT()
+  151   | | |   |   | | \-LIST_REMOVE()
+  152   | | |   |   | +-evmap_signal_del_() <int evmap_signal_del_ (struct event_base *base, int sig, struct event *ev) at src/evmap.c:479>
+  153   | | |   |   | | +-GET_SIGNAL_SLOT()
+  154   | | |   |   | | +-LIST_REMOVE()
+  155   | | |   |   | | \-LIST_FIRST()
+  156   | | |   |   | +-event_haveevents() <int event_haveevents (struct event_base *base) at src/event.c:1352>
+  157   | | |   |   | +-N_ACTIVE_CALLBACKS()
+  158   | | |   |   | +-EVBASE_NEED_NOTIFY()
+  159   | | |   |   | +-evthread_notify_base() <int evthread_notify_base (struct event_base *base) at src/event.c:2544>
+  160   | | |   |   | | \-EVENT_BASE_ASSERT_LOCKED()
+  161   | | |   |   | +-event_debug_note_del_() <void event_debug_note_del_ (const struct event *ev) at src/event.c:394>
+  162   | | |   |   | | +-EVLOCK_LOCK()
+  163   | | |   |   | | +-HT_FIND()
+  164   | | |   |   | | +-event_errx() <void event_errx (int eval, const char *fmt, ...) at src/log.c:146> [see 33]
+  165   | | |   |   | | +-EV_SOCK_ARG()
+  166   | | |   |   | | \-EVLOCK_UNLOCK()
+  167   | | |   |   | +-EVBASE_IN_THREAD()
+  168   | | |   |   | \-EVTHREAD_COND_WAIT()
+  169   | | |   |   \-EVBASE_RELEASE_LOCK()
+  170   | | |   +-EVUTIL_CLOSESOCKET()
+  171   | | |   +-event_debug_unassign() <void event_debug_unassign (struct event *ev) at src/event.c:2240>
+  172   | | |   | +-event_debug_assert_not_added_() <void event_debug_assert_not_added_ (const struct event *ev) at src/event.c:396>
+  173   | | |   | | +-EVLOCK_LOCK()
+  174   | | |   | | +-HT_FIND()
+  175   | | |   | | +-event_errx() <void event_errx (int eval, const char *fmt, ...) at src/log.c:146> [see 33]
+  176   | | |   | | +-EV_SOCK_ARG()
+  177   | | |   | | \-EVLOCK_UNLOCK()
+  178   | | |   | \-event_debug_note_teardown_() <void event_debug_note_teardown_ (const struct event *ev) at src/event.c:392>
+  179   | | |   |   +-EVLOCK_LOCK()
+  180   | | |   |   +-HT_REMOVE()
+  181   | | |   |   +-mm_free() <mm_free at src/evmap.c:112>
+  182   | | |   |   \-EVLOCK_UNLOCK()
+  183   | | |   +-evmap_delete_all_()
+  184   | | |   +-min_heap_top_()
+  185   | | |   +-TAILQ_FIRST()
+  186   | | |   +-TAILQ_NEXT()
+  187   | | |   +-mm_free() <mm_free at src/evmap.c:112>
+  188   | | |   +-event_base_free_queues_() <int event_base_free_queues_ (struct event_base *base, int run_finalizers) at src/event.c:814>
+  189   | | |   | +-TAILQ_FIRST()
+  190   | | |   | +-TAILQ_NEXT()
+  191   | | |   | \-event_base_cancel_single_callback_() <int event_base_cancel_single_callback_ (struct event_base *base, struct event_callback *evcb, int run_finalizers) at src/event.c:775>
+  192   | | |   |   +-event_callback_to_event() <inline struct event *event_callback_to_event (struct event_callback *evcb) at src/event.c:492>
+  193   | | |   |   | +-EVUTIL_ASSERT()
+  194   | | |   |   | \-EVUTIL_UPCAST()
+  195   | | |   |   +-event_del_() <int event_del_ (struct event *ev, int blocking) at src/event.c:2772> [see 108]
+  196   | | |   |   +-EVBASE_ACQUIRE_LOCK()
+  197   | | |   |   +-event_callback_cancel_nolock_() <int event_callback_cancel_nolock_ (struct event_base *base, struct event_callback *evcb, int even_if_finalizing) at src/event.c:3072>
+  198   | | |   |   | +-event_del_nolock_() <int event_del_nolock_ (struct event *ev, int blocking) at src/event.c:2813> [see 112]
+  199   | | |   |   | +-event_callback_to_event() <inline struct event *event_callback_to_event (struct event_callback *evcb) at src/event.c:492> [see 192]
+  200   | | |   |   | +-EVUTIL_ASSERT()
+  201   | | |   |   | +-event_queue_remove_active() <void event_queue_remove_active (struct event_base *base, struct event_callback *evcb) at src/event.c:3239> [see 129]
+  202   | | |   |   | \-event_queue_remove_active_later() <void event_queue_remove_active_later (struct event_base *base, struct event_callback *evcb) at src/event.c:3255> [see 136]
+  203   | | |   |   +-EVBASE_RELEASE_LOCK()
+  204   | | |   |   \-mm_free() <mm_free at src/evmap.c:112>
+  205   | | |   +-event_debug()
+  206   | | |   +-LIST_FIRST()
+  207   | | |   +-LIST_REMOVE()
+  208   | | |   +-EVUTIL_ASSERT()
+  209   | | |   +-TAILQ_EMPTY()
+  210   | | |   +-min_heap_empty_()
+  211   | | |   +-min_heap_dtor_()
+  212   | | |   +-evmap_io_clear_() <void evmap_io_clear_ (struct event_io_map *ctx) at src/evmap.c:194>
+  213   | | |   | +-HT_START()
+  214   | | |   | +-HT_NEXT_RMV()
+  215   | | |   | +-mm_free() <mm_free at src/evmap.c:112>
+  216   | | |   | +-HT_CLEAR()
+  217   | | |   | \-evmap_signal_clear_() <void evmap_signal_clear_ (struct event_signal_map *ctx) at src/evmap.c:242>
+  218   | | |   |   \-mm_free() <mm_free at src/evmap.c:112>
+  219   | | |   +-evmap_signal_clear_() <void evmap_signal_clear_ (struct event_signal_map *ctx) at src/evmap.c:242> [see 217]
+  220   | | |   +-event_changelist_freemem_()
+  221   | | |   +-EVTHREAD_FREE_LOCK()
+  222   | | |   \-EVTHREAD_FREE_COND()
+  223   | | +-event_msgx() <void event_msgx (const char *fmt, ...) at src/log.c:167>
+  224   | | | +-va_start()
+  225   | | | +-event_logv_() <void event_logv_ (int severity, const char *errstr, const char *fmt, va_list ap) at src/log.c:187> [see 10]
+  226   | | | \-va_end()
+  227   | | +-event_base_priority_init() <int event_base_priority_init (struct event_base *base, int npriorities) at src/event.c:1246>
+  228   | | | +-EVBASE_ACQUIRE_LOCK()
+  229   | | | +-N_ACTIVE_CALLBACKS()
+  230   | | | +-mm_free() <mm_free at src/evmap.c:112>
+  231   | | | +-mm_calloc()
+  232   | | | +-event_warn() <void event_warn (const char *fmt, ...) at src/log.c:113> [see 8]
+  233   | | | +-TAILQ_INIT()
+  234   | | | \-EVBASE_RELEASE_LOCK()
+  235   | | +-EVTHREAD_LOCKING_ENABLED()
+  236   | | +-EVTHREAD_ALLOC_LOCK()
+  237   | | +-EVTHREAD_ALLOC_COND()
+  238   | | +-evthread_make_base_notifiable() <int evthread_make_base_notifiable (struct event_base *base) at src/event.c:3621>
+  239   | | | +-EVBASE_ACQUIRE_LOCK()
+  240   | | | +-evthread_make_base_notifiable_nolock_() <int evthread_make_base_notifiable_nolock_ (struct event_base *base) at src/event.c:3634>
+  241   | | | | +-event_kq_add_notify_event_() <int event_kq_add_notify_event_ (struct event_base *base) at src/kqueue.c:519>
+  242   | | | | | +-memset()
+  243   | | | | | +-kevent()
+  244   | | | | | \-event_warn() <void event_warn (const char *fmt, ...) at src/log.c:113> [see 8]
+  245   | | | | +-event_kq_notify_base_() <int event_kq_notify_base_ (struct event_base *base) at src/kqueue.c:550>
+  246   | | | | | +-memset()
+  247   | | | | | +-kevent()
+  248   | | | | | \-event_warn() <void event_warn (const char *fmt, ...) at src/log.c:113> [see 8]
+  249   | | | | +-evutil_eventfd_() <evutil_socket_t evutil_eventfd_ (unsigned initval, int flags) at src/evutil.c:2684>
+  250   | | | | | +-eventfd()
+  251   | | | | | +-evutil_fast_socket_closeonexec() <int evutil_fast_socket_closeonexec (evutil_socket_t fd) at src/evutil.c:438>
+  252   | | | | | | +-fcntl()
+  253   | | | | | | \-event_warn() <void event_warn (const char *fmt, ...) at src/log.c:113> [see 8]
+  254   | | | | | +-evutil_closesocket() <int evutil_closesocket (evutil_socket_t sock) at src/evutil.c:450>
+  255   | | | | | | +-close()
+  256   | | | | | | \-closesocket()
+  257   | | | | | \-evutil_fast_socket_nonblocking() <int evutil_fast_socket_nonblocking (evutil_socket_t fd) at src/evutil.c:347>
+  258   | | | | |   +-evutil_make_socket_nonblocking() <int evutil_make_socket_nonblocking (evutil_socket_t fd) at src/evutil.c:314>
+  259   | | | | |   | +-ioctlsocket()
+  260   | | | | |   | +-event_sock_warn() <void event_sock_warn (evutil_socket_t sock, const char *fmt, ...) at src/log.c:135>
+  261   | | | | |   | | +-evutil_socket_geterror() <int evutil_socket_geterror (evutil_socket_t sock) at src/evutil.c:521>
+  262   | | | | |   | | | +-WSAGetLastError()
+  263   | | | | |   | | | \-getsockopt()
+  264   | | | | |   | | +-va_start()
+  265   | | | | |   | | +-event_logv_() <void event_logv_ (int severity, const char *errstr, const char *fmt, va_list ap) at src/log.c:187> [see 10]
+  266   | | | | |   | | +-evutil_socket_error_to_string() <const char *evutil_socket_error_to_string (int errcode) at src/evutil.c:1750>
+  267   | | | | |   | | | +-EVLOCK_LOCK()
+  268   | | | | |   | | | +-HT_FIND()
+  269   | | | | |   | | | +-FormatMessageA()
+  270   | | | | |   | | | +-chomp() <void chomp (char *s) at src/evutil.c:1679>
+  271   | | | | |   | | | | \-strlen()
+  272   | | | | |   | | | +-LocalAlloc()
+  273   | | | | |   | | | +-evutil_snprintf() <int evutil_snprintf (char *buf, size_t buflen, const char *format, ...) at src/evutil.c:1851> [see 15]
+  274   | | | | |   | | | +-mm_malloc() <0.5, mm_malloc at src/evmap.c:112>
+  275   | | | | |   | | | +-LocalFree()
+  276   | | | | |   | | | +-HT_INSERT()
+  277   | | | | |   | | | \-EVLOCK_UNLOCK()
+  278   | | | | |   | | \-va_end()
+  279   | | | | |   | +-fcntl()
+  280   | | | | |   | \-event_warn() <void event_warn (const char *fmt, ...) at src/log.c:113> [see 8]
+  281   | | | | |   +-fcntl()
+  282   | | | | |   \-event_warn() <void event_warn (const char *fmt, ...) at src/log.c:113> [see 8]
+  283   | | | | +-evthread_notify_base_eventfd() <int evthread_notify_base_eventfd (struct event_base *base) at src/event.c:2527>
+  284   | | | | | \-write()
+  285   | | | | +-evthread_notify_drain_eventfd() <void evthread_notify_drain_eventfd (evutil_socket_t fd, short what, void *arg) at src/event.c:3586>
+  286   | | | | | +-read()
+  287   | | | | | +-event_sock_warn() <void event_sock_warn (evutil_socket_t sock, const char *fmt, ...) at src/log.c:135> [see 260]
+  288   | | | | | +-EVBASE_ACQUIRE_LOCK()
+  289   | | | | | \-EVBASE_RELEASE_LOCK()
+  290   | | | | +-evutil_make_internal_pipe_() <int evutil_make_internal_pipe_ (evutil_socket_t fd[2]) at src/evutil.c:2626>
+  291   | | | | | +-pipe2()
+  292   | | | | | +-pipe()
+  293   | | | | | +-evutil_fast_socket_nonblocking() <int evutil_fast_socket_nonblocking (evutil_socket_t fd) at src/evutil.c:347> [see 257]
+  294   | | | | | +-evutil_fast_socket_closeonexec() <int evutil_fast_socket_closeonexec (evutil_socket_t fd) at src/evutil.c:438> [see 251]
+  295   | | | | | +-close()
+  296   | | | | | +-event_warn() <void event_warn (const char *fmt, ...) at src/log.c:113> [see 8]
+  297   | | | | | +-evutil_socketpair() <int evutil_socketpair (int family, int type, int protocol, evutil_socket_t fd[2]) at src/evutil.c:198>
+  298   | | | | | | +-socketpair()
+  299   | | | | | | \-evutil_ersatz_socketpair_() <int evutil_ersatz_socketpair_ (int family, int type, int protocol, evutil_socket_t fd[2]) at src/evutil.c:208>
+  300   | | | | | |   +-EVUTIL_SET_SOCKET_ERROR()
+  301   | | | | | |   +-ERR()
+  302   | | | | | |   +-socket()
+  303   | | | | | |   +-memset()
+  304   | | | | | |   +-htonl()
+  305   | | | | | |   +-bind()
+  306   | | | | | |   +-listen()
+  307   | | | | | |   +-getsockname()
+  308   | | | | | |   +-connect()
+  309   | | | | | |   +-accept()
+  310   | | | | | |   +-evutil_closesocket() <int evutil_closesocket (evutil_socket_t sock) at src/evutil.c:450> [see 254]
+  311   | | | | | |   \-EVUTIL_SOCKET_ERROR()
+  312   | | | | | \-evutil_closesocket() <int evutil_closesocket (evutil_socket_t sock) at src/evutil.c:450> [see 254]
+  313   | | | | +-evthread_notify_base_default() <int evthread_notify_base_default (struct event_base *base) at src/event.c:2510>
+  314   | | | | | +-send()
+  315   | | | | | +-write()
+  316   | | | | | \-EVUTIL_ERR_IS_EAGAIN()
+  317   | | | | +-evthread_notify_drain_default() <void evthread_notify_drain_default (evutil_socket_t fd, short what, void *arg) at src/event.c:3603>
+  318   | | | | | +-recv()
+  319   | | | | | +-read()
+  320   | | | | | +-EVBASE_ACQUIRE_LOCK()
+  321   | | | | | \-EVBASE_RELEASE_LOCK()
+  322   | | | | +-event_assign() <int event_assign (struct event *ev, struct event_base *base, evutil_socket_t fd, short events, void (*callback) (evutil_socket_t, short, void *), void *arg) at src/event.c:2116>
+  323   | | | | | +-event_debug_assert_socket_nonblocking_() <void event_debug_assert_socket_nonblocking_ (evutil_socket_t fd) at src/event.c:397>
+  324   | | | | | | +-fcntl()
+  325   | | | | | | \-EVUTIL_ASSERT()
+  326   | | | | | +-event_debug_assert_not_added_() <void event_debug_assert_not_added_ (const struct event *ev) at src/event.c:396> [see 172]
+  327   | | | | | +-event_warnx() <void event_warnx (const char *fmt, ...) at src/log.c:157> [see 88]
+  328   | | | | | +-evutil_timerclear()
+  329   | | | | | +-min_heap_elem_init_()
+  330   | | | | | \-event_debug_note_setup_() <void event_debug_note_setup_ (const struct event *ev) at src/event.c:391>
+  331   | | | | |   +-EVLOCK_LOCK()
+  332   | | | | |   +-HT_FIND()
+  333   | | | | |   +-mm_malloc() <0.5, mm_malloc at src/evmap.c:112>
+  334   | | | | |   +-event_err() <void event_err (int eval, const char *fmt, ...) at src/log.c:102>
+  335   | | | | |   | +-va_start()
+  336   | | | | |   | +-event_logv_() <void event_logv_ (int severity, const char *errstr, const char *fmt, va_list ap) at src/log.c:187> [see 10]
+  337   | | | | |   | +-strerror()
+  338   | | | | |   | +-va_end()
+  339   | | | | |   | \-event_exit() <void event_exit (int errcode) at src/log.c:90> [see 37]
+  340   | | | | |   +-HT_INSERT()
+  341   | | | | |   \-EVLOCK_UNLOCK()
+  342   | | | | +-event_priority_set() <int event_priority_set (struct event *ev, int pri) at src/event.c:2359>
+  343   | | | | | \-event_debug_assert_is_setup_() <void event_debug_assert_is_setup_ (const struct event *ev) at src/event.c:395>
+  344   | | | | |   +-EVLOCK_LOCK()
+  345   | | | | |   +-HT_FIND()
+  346   | | | | |   +-event_errx() <void event_errx (int eval, const char *fmt, ...) at src/log.c:146> [see 33]
+  347   | | | | |   +-EV_SOCK_ARG()
+  348   | | | | |   \-EVLOCK_UNLOCK()
+  349   | | | | \-event_add_nolock_() <int event_add_nolock_ (struct event *ev, const struct timeval *tv, int tv_is_absolute) at src/event.c:2600> (R)
+  350   | | | |   +-EVENT_BASE_ASSERT_LOCKED()
+  351   | | | |   +-event_debug_assert_is_setup_() <void event_debug_assert_is_setup_ (const struct event *ev) at src/event.c:395> [see 343]
+  352   | | | |   +-event_debug()
+  353   | | | |   +-EV_SOCK_ARG()
+  354   | | | |   +-EVUTIL_ASSERT()
+  355   | | | |   +-min_heap_reserve_()
+  356   | | | |   +-min_heap_size_()
+  357   | | | |   +-event_to_event_callback() <inline struct event_callback *event_to_event_callback (struct event *ev) at src/event.c:499>
+  358   | | | |   +-EVBASE_IN_THREAD()
+  359   | | | |   +-EVTHREAD_COND_WAIT()
+  360   | | | |   +-evmap_io_add_() <int evmap_io_add_ (struct event_base *base, evutil_socket_t fd, struct event *ev) at src/evmap.c:273>
+  361   | | | |   | +-EVUTIL_ASSERT()
+  362   | | | |   | +-evmap_make_space() <int evmap_make_space (struct event_signal_map *map, int slot, int msize) at src/evmap.c:205>
+  363   | | | |   | | +-mm_realloc() <mm_realloc at src/evmap.c:112>
+  364   | | | |   | | \-memset()
+  365   | | | |   | +-GET_IO_SLOT_AND_CTOR()
+  366   | | | |   | +-evmap_io_init() <void evmap_io_init (struct evmap_io *entry) at src/evmap.c:261>
+  367   | | | |   | | \-LIST_INIT()
+  368   | | | |   | +-EVUTIL_UNLIKELY()
+  369   | | | |   | +-event_warnx() <void event_warnx (const char *fmt, ...) at src/log.c:157> [see 88]
+  370   | | | |   | +-EVENT_DEBUG_MODE_IS_ON()
+  371   | | | |   | +-LIST_FIRST()
+  372   | | | |   | \-LIST_INSERT_HEAD()
+  373   | | | |   +-evmap_signal_add_() <int evmap_signal_add_ (struct event_base *base, int sig, struct event *ev) at src/evmap.c:450>
+  374   | | | |   | +-evmap_make_space() <int evmap_make_space (struct event_signal_map *map, int slot, int msize) at src/evmap.c:205> [see 362]
+  375   | | | |   | +-GET_SIGNAL_SLOT_AND_CTOR()
+  376   | | | |   | +-evmap_signal_init() <void evmap_signal_init (struct evmap_signal *entry) at src/evmap.c:443>
+  377   | | | |   | | \-LIST_INIT()
+  378   | | | |   | +-LIST_EMPTY()
+  379   | | | |   | \-LIST_INSERT_HEAD()
+  380   | | | |   +-event_queue_insert_inserted() <void event_queue_insert_inserted (struct event_base *base, struct event *ev) at src/event.c:3364>
+  381   | | | |   | +-EVENT_BASE_ASSERT_LOCKED()
+  382   | | | |   | +-EVUTIL_FAILURE_CHECK()
+  383   | | | |   | +-event_errx() <void event_errx (int eval, const char *fmt, ...) at src/log.c:146> [see 33]
+  384   | | | |   | +-EV_SOCK_ARG()
+  385   | | | |   | \-INCR_EVENT_COUNT()
+  386   | | | |   +-event_queue_remove_timeout() <void event_queue_remove_timeout (struct event_base *base, struct event *ev) at src/event.c:3270> [see 117]
+  387   | | | |   +-event_queue_remove_active() <void event_queue_remove_active (struct event_base *base, struct event_callback *evcb) at src/event.c:3239> [see 129]
+  388   | | | |   +-gettime() <int gettime (struct event_base *base, struct timeval *tp) at src/event.c:413> [see 56]
+  389   | | | |   +-is_common_timeout() <inline int is_common_timeout (const struct timeval *tv, const struct event_base *base) at src/event.c:1414> [see 123]
+  390   | | | |   +-COMMON_TIMEOUT_IDX()
+  391   | | | |   +-evutil_timeradd()
+  392   | | | |   +-event_queue_reinsert_timeout() <void event_queue_reinsert_timeout (struct event_base *base, struct event *ev, int was_common, int is_common, int old_timeout_idx) at src/event.c:3294>
+  393   | | | |   | +-event_queue_insert_timeout() <void event_queue_insert_timeout (struct event_base *base, struct event *ev) at src/event.c:3418>
+  394   | | | |   | | +-EVENT_BASE_ASSERT_LOCKED()
+  395   | | | |   | | +-EVUTIL_FAILURE_CHECK()
+  396   | | | |   | | +-event_errx() <void event_errx (int eval, const char *fmt, ...) at src/log.c:146> [see 33]
+  397   | | | |   | | +-EV_SOCK_ARG()
+  398   | | | |   | | +-INCR_EVENT_COUNT()
+  399   | | | |   | | +-is_common_timeout() <inline int is_common_timeout (const struct timeval *tv, const struct event_base *base) at src/event.c:1414> [see 123]
+  400   | | | |   | | +-get_common_timeout_list() <inline struct common_timeout_list *get_common_timeout_list (struct event_base *base, const struct timeval *tv) at src/event.c:1436> [see 125]
+  401   | | | |   | | +-insert_common_timeout_inorder() <void insert_common_timeout_inorder (struct common_timeout_list *ctl, struct event *ev) at src/event.c:3334>
+  402   | | | |   | | | +-TAILQ_FOREACH_REVERSE()
+  403   | | | |   | | | +-EVUTIL_ASSERT()
+  404   | | | |   | | | +-is_same_common_timeout() <inline int is_same_common_timeout (const struct timeval *tv1, const struct timeval *tv2) at src/event.c:1427>
+  405   | | | |   | | | +-evutil_timercmp()
+  406   | | | |   | | | +-TAILQ_INSERT_AFTER()
+  407   | | | |   | | | \-TAILQ_INSERT_HEAD()
+  408   | | | |   | | \-min_heap_push_()
+  409   | | | |   | +-TAILQ_REMOVE()
+  410   | | | |   | +-get_common_timeout_list() <inline struct common_timeout_list *get_common_timeout_list (struct event_base *base, const struct timeval *tv) at src/event.c:1436> [see 125]
+  411   | | | |   | +-insert_common_timeout_inorder() <void insert_common_timeout_inorder (struct common_timeout_list *ctl, struct event *ev) at src/event.c:3334> [see 401]
+  412   | | | |   | +-min_heap_push_()
+  413   | | | |   | +-min_heap_erase_()
+  414   | | | |   | +-min_heap_adjust_()
+  415   | | | |   | \-EVUTIL_ASSERT()
+  416   | | | |   +-event_queue_insert_timeout() <void event_queue_insert_timeout (struct event_base *base, struct event *ev) at src/event.c:3418> [see 393]
+  417   | | | |   +-get_common_timeout_list() <inline struct common_timeout_list *get_common_timeout_list (struct event_base *base, const struct timeval *tv) at src/event.c:1436> [see 125]
+  418   | | | |   +-TAILQ_FIRST()
+  419   | | | |   +-common_timeout_schedule() <void common_timeout_schedule (struct common_timeout_list *ctl, const struct timeval *now, struct event *head) at src/event.c:1456> (R)
+  420   | | | |   | \-event_add_nolock_() <int event_add_nolock_ (struct event *ev, const struct timeval *tv, int tv_is_absolute) at src/event.c:2600> (recursive: see 349) [see 349]
+  421   | | | |   +-min_heap_elt_is_top_()
+  422   | | | |   +-min_heap_top_()
+  423   | | | |   +-evutil_timercmp()
+  424   | | | |   +-EVBASE_NEED_NOTIFY()
+  425   | | | |   +-evthread_notify_base() <int evthread_notify_base (struct event_base *base) at src/event.c:2544> [see 159]
+  426   | | | |   \-event_debug_note_add_() <void event_debug_note_add_ (const struct event *ev) at src/event.c:393>
+  427   | | | |     +-EVLOCK_LOCK()
+  428   | | | |     +-HT_FIND()
+  429   | | | |     +-event_errx() <void event_errx (int eval, const char *fmt, ...) at src/log.c:146> [see 33]
+  430   | | | |     +-EV_SOCK_ARG()
+  431   | | | |     \-EVLOCK_UNLOCK()
+  432   | | | \-EVBASE_RELEASE_LOCK()
+  433   | | \-event_base_start_iocp_() <int event_base_start_iocp_ (struct event_base *base, int n_cpus) at src/event.c:744>
+  434   | |   +-event_iocp_port_launch_() <struct event_iocp_port *event_iocp_port_launch_ (int n_cpus) at src/event_iocp.c:176>
+  435   | |   | +-init_extension_functions() <void init_extension_functions (struct win32_extension_fns *ext) at src/event_iocp.c:148>
+  436   | |   | | +-socket()
+  437   | |   | | +-get_extension_function() <void *get_extension_function (SOCKET s, const GUID *which_fn) at src/event_iocp.c:113>
+  438   | |   | | | \-WSAIoctl()
+  439   | |   | | \-closesocket()
+  440   | |   | +-mm_calloc()
+  441   | |   | +-CreateIoCompletionPort()
+  442   | |   | +-CreateSemaphore()
+  443   | |   | +-loop() <void loop (void *port_) at src/event_iocp.c:64>
+  444   | |   | | +-GetQueuedCompletionStatus()
+  445   | |   | | +-EnterCriticalSection()
+  446   | |   | | +-ReleaseSemaphore()
+  447   | |   | | +-LeaveCriticalSection()
+  448   | |   | | +-handle_entry() <void handle_entry (OVERLAPPED *o, ULONG_PTR completion_key, DWORD nBytes, int ok) at src/event_iocp.c:56>
+  449   | |   | | | \-EVUTIL_UPCAST()
+  450   | |   | | \-event_warnx() <void event_warnx (const char *fmt, ...) at src/log.c:157> [see 88]
+  451   | |   | +-InitializeCriticalSectionAndSpinCount()
+  452   | |   | +-CloseHandle()
+  453   | |   | \-mm_free() <mm_free at src/evmap.c:112>
+  454   | |   \-event_warnx() <void event_warnx (const char *fmt, ...) at src/log.c:157> [see 88]
+  455   | \-event_config_free() <void event_config_free (struct event_config *cfg) at src/event.c:1166>
+  456   |   +-TAILQ_FIRST()
+  457   |   +-TAILQ_REMOVE()
+  458   |   +-event_config_entry_free() <void event_config_entry_free (struct event_config_entry *entry) at src/event.c:1158>
+  459   |   | \-mm_free() <mm_free at src/evmap.c:112>
+  460   |   \-mm_free() <mm_free at src/evmap.c:112>
+  461   +-event_new() <struct event *event_new (struct event_base *base, evutil_socket_t fd, short events, void (*cb) (evutil_socket_t, short, void *), void *arg) at src/event.c:2211>
+  462   | +-mm_malloc() <0.5, mm_malloc at src/evmap.c:112>
+  463   | +-event_assign() <int event_assign (struct event *ev, struct event_base *base, evutil_socket_t fd, short events, void (*callback) (evutil_socket_t, short, void *), void *arg) at src/event.c:2116> [see 322]
+  464   | \-mm_free() <mm_free at src/evmap.c:112>
+  465   +-timer_cb() <void timer_cb (evutil_socket_t fd, short what, void *arg) at main.cpp:6>
+  466   +-event_add() <int event_add (struct event *ev, const struct timeval *tv) at src/event.c:2487>
+  467   | +-EVUTIL_FAILURE_CHECK()
+  468   | +-event_warnx() <void event_warnx (const char *fmt, ...) at src/log.c:157> [see 88]
+  469   | +-EVBASE_ACQUIRE_LOCK()
+  470   | +-event_add_nolock_() <int event_add_nolock_ (struct event *ev, const struct timeval *tv, int tv_is_absolute) at src/event.c:2600> (R) [see 349]
+  471   | \-EVBASE_RELEASE_LOCK()
+  472   +-event_base_dispatch() <int event_base_dispatch (struct event_base *event_base) at src/event.c:1821>
+  473   | \-event_base_loop() <int event_base_loop (struct event_base *base, int flags) at src/event.c:1929>
+  474   |   +-EVBASE_ACQUIRE_LOCK()
+  475   |   +-event_warnx() <void event_warnx (const char *fmt, ...) at src/log.c:157> [see 88]
+  476   |   +-EVBASE_RELEASE_LOCK()
+  477   |   +-clear_time_cache() <inline void clear_time_cache (struct event_base *base) at src/event.c:460>
+  478   |   +-evsig_set_base_() <void evsig_set_base_ (struct event_base *base) at src/signal.c:122>
+  479   |   | +-EVSIGBASE_LOCK()
+  480   |   | \-EVSIGBASE_UNLOCK()
+  481   |   +-EVTHREAD_GET_ID()
+  482   |   +-N_ACTIVE_CALLBACKS()
+  483   |   +-timeout_next() <int timeout_next (struct event_base *base, struct timeval **tv_p) at src/event.c:3146>
+  484   |   | +-min_heap_top_()
+  485   |   | +-gettime() <int gettime (struct event_base *base, struct timeval *tp) at src/event.c:413> [see 56]
+  486   |   | +-evutil_timercmp()
+  487   |   | +-evutil_timerclear()
+  488   |   | +-evutil_timersub()
+  489   |   | +-EVUTIL_ASSERT()
+  490   |   | \-event_debug()
+  491   |   +-evutil_timerclear()
+  492   |   +-event_haveevents() <int event_haveevents (struct event_base *base) at src/event.c:1352>
+  493   |   +-event_debug()
+  494   |   +-event_queue_make_later_events_active() <void event_queue_make_later_events_active (struct event_base *base) at src/event.c:3442>
+  495   |   | +-EVENT_BASE_ASSERT_LOCKED()
+  496   |   | +-TAILQ_FIRST()
+  497   |   | +-TAILQ_REMOVE()
+  498   |   | +-EVUTIL_ASSERT()
+  499   |   | \-TAILQ_INSERT_TAIL()
+  500   |   +-update_time_cache() <inline void update_time_cache (struct event_base *base) at src/event.c:467>
+  501   |   | \-gettime() <int gettime (struct event_base *base, struct timeval *tp) at src/event.c:413> [see 56]
+  502   |   +-timeout_process() <void timeout_process (struct event_base *base) at src/event.c:3184>
+  503   |   | +-min_heap_empty_()
+  504   |   | +-gettime() <int gettime (struct event_base *base, struct timeval *tp) at src/event.c:413> [see 56]
+  505   |   | +-min_heap_top_()
+  506   |   | +-evutil_timercmp()
+  507   |   | +-event_del_nolock_() <int event_del_nolock_ (struct event *ev, int blocking) at src/event.c:2813> [see 112]
+  508   |   | +-event_debug()
+  509   |   | \-event_active_nolock_() <void event_active_nolock_ (struct event *ev, int res, short ncalls) at src/event.c:2922>
+  510   |   |   +-event_debug()
+  511   |   |   +-EV_SOCK_ARG()
+  512   |   |   +-EVENT_BASE_ASSERT_LOCKED()
+  513   |   |   +-EVUTIL_ASSERT()
+  514   |   |   +-event_to_event_callback() <inline struct event_callback *event_to_event_callback (struct event *ev) at src/event.c:499>
+  515   |   |   +-EVBASE_IN_THREAD()
+  516   |   |   +-EVTHREAD_COND_WAIT()
+  517   |   |   \-event_callback_activate_nolock_() <int event_callback_activate_nolock_ (struct event_base *base, struct event_callback *evcb) at src/event.c:3009>
+  518   |   |     +-EVUTIL_ASSERT()
+  519   |   |     +-event_queue_remove_active_later() <void event_queue_remove_active_later (struct event_base *base, struct event_callback *evcb) at src/event.c:3255> [see 136]
+  520   |   |     +-event_queue_insert_active() <void event_queue_insert_active (struct event_base *base, struct event_callback *evcb) at src/event.c:3380>
+  521   |   |     | +-EVENT_BASE_ASSERT_LOCKED()
+  522   |   |     | +-INCR_EVENT_COUNT()
+  523   |   |     | +-MAX_EVENT_COUNT()
+  524   |   |     | +-EVUTIL_ASSERT()
+  525   |   |     | \-TAILQ_INSERT_TAIL()
+  526   |   |     +-EVBASE_NEED_NOTIFY()
+  527   |   |     \-evthread_notify_base() <int evthread_notify_base (struct event_base *base) at src/event.c:2544> [see 159]
+  528   |   \-event_process_active() <int event_process_active (struct event_base *base) at src/event.c:1766>
+  529   |     +-update_time_cache() <inline void update_time_cache (struct event_base *base) at src/event.c:467> [see 500]
+  530   |     +-gettime() <int gettime (struct event_base *base, struct timeval *tp) at src/event.c:413> [see 56]
+  531   |     +-evutil_timeradd()
+  532   |     +-TAILQ_FIRST()
+  533   |     \-event_process_active_single_queue() <int event_process_active_single_queue (struct event_base *base, struct evcallback_list *activeq, int max_to_process, const struct timeval *endtime) at src/event.c:1640>
+  534   |       +-EVUTIL_ASSERT()
+  535   |       +-TAILQ_FIRST()
+  536   |       +-event_callback_to_event() <inline struct event *event_callback_to_event (struct event_callback *evcb) at src/event.c:492> [see 192]
+  537   |       +-event_queue_remove_active() <void event_queue_remove_active (struct event_base *base, struct event_callback *evcb) at src/event.c:3239> [see 129]
+  538   |       +-event_del_nolock_() <int event_del_nolock_ (struct event *ev, int blocking) at src/event.c:2813> [see 112]
+  539   |       +-event_debug()
+  540   |       +-event_signal_closure() <inline void event_signal_closure (struct event_base *base, struct event *ev) at src/event.c:1360>
+  541   |       | +-EVBASE_RELEASE_LOCK()
+  542   |       | \-EVBASE_ACQUIRE_LOCK()
+  543   |       +-event_persist_closure() <inline void event_persist_closure (struct event_base *base, struct event *ev) at src/event.c:1568>
+  544   |       | +-EVUTIL_ASSERT()
+  545   |       | +-is_same_common_timeout() <inline int is_same_common_timeout (const struct timeval *tv1, const struct timeval *tv2) at src/event.c:1427> [see 404]
+  546   |       | +-gettime() <int gettime (struct event_base *base, struct timeval *tp) at src/event.c:413> [see 56]
+  547   |       | +-is_common_timeout() <inline int is_common_timeout (const struct timeval *tv, const struct event_base *base) at src/event.c:1414> [see 123]
+  548   |       | +-evutil_timeradd()
+  549   |       | +-evutil_timercmp()
+  550   |       | +-event_add_nolock_() <int event_add_nolock_ (struct event *ev, const struct timeval *tv, int tv_is_absolute) at src/event.c:2600> (R) [see 349]
+  551   |       | \-EVBASE_RELEASE_LOCK()
+  552   |       +-EVBASE_RELEASE_LOCK()
+  553   |       +-event_debug_note_teardown_() <void event_debug_note_teardown_ (const struct event *ev) at src/event.c:392> [see 178]
+  554   |       +-mm_free() <mm_free at src/evmap.c:112>
+  555   |       +-EVBASE_ACQUIRE_LOCK()
+  556   |       +-EVTHREAD_COND_BROADCAST()
+  557   |       +-update_time_cache() <inline void update_time_cache (struct event_base *base) at src/event.c:467> [see 500]
+  558   |       +-gettime() <int gettime (struct event_base *base, struct timeval *tp) at src/event.c:413> [see 56]
+  559   |       \-evutil_timercmp()
+  560   +-event_free() <void event_free (struct event *ev) at src/event.c:2226>
+  561   | +-event_del() <int event_del (struct event *ev) at src/event.c:2790> [see 107]
+  562   | +-event_debug_note_teardown_() <void event_debug_note_teardown_ (const struct event *ev) at src/event.c:392> [see 178]
+  563   | \-mm_free() <mm_free at src/evmap.c:112>
+  564   \-event_base_free() <void event_base_free (struct event_base *base) at src/event.c:955> [see 92]
