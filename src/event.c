@@ -710,6 +710,7 @@ event_base_new_with_config(const struct event_config *cfg)
 		    event_is_method_disabled(eventops[i]->name))
 			continue;
 
+		// base->evsel will be overwrite by the 'eventops[i]' follow,  why ???
 		base->evsel = eventops[i];
 
 		base->evbase = base->evsel->init(base);
@@ -2158,7 +2159,12 @@ event_base_once(struct event_base *base, evutil_socket_t fd, short events,
 
 	return (0);
 }
-
+// The fd and events arguments determine which conditions will trigger the event;
+// If events contains one of EV_READ|EV_WRITE, then fd is a file descriptor or socket that should get monitored for readiness to do
+// If events contains EV_SIGNAL, then fd is a signal number to wait for.
+// If events contains none of those flags, then the event can be triggered only by a timeout or by manual activation with event_active(): In this case, fd must be -1
+// The EV_TIMEOUT flag has no effect here.
+// You _can_ use event_assign to change an existing event, but only if it is not active or pending !
 int
 event_assign(struct event *ev, struct event_base *base, evutil_socket_t fd, short events, void (*callback)(evutil_socket_t, short, void *), void *arg)
 {

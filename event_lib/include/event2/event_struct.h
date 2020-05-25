@@ -153,6 +153,52 @@ struct event {
 	struct timeval ev_timeout;
 };
 
+#if 0
+struct event {
+	struct event_callback ev_evcallback;
+
+	/* for managing timeouts */
+	union {
+		struct { 
+			struct event *tqe_next; 
+			struct event **tqe_prev; 
+		} ev_next_with_common_timeout;
+
+		int min_heap_idx;
+	} ev_timeout_pos;
+	int ev_fd;
+
+	struct event_base *ev_base;
+
+	union {
+		/* used for io events */
+		struct {
+			struct { 
+				struct event *le_next; 
+				struct event **le_prev; 
+			} ev_io_next;
+			struct timeval ev_timeout;
+		} ev_io;
+
+		/* used by signal events */
+		struct {
+			struct { 
+				struct event *le_next; 
+				struct event **le_prev; 
+			} ev_signal_next;
+
+			short ev_ncalls;
+			/* Allows deletes in callback */
+			short *ev_pncalls;
+		} ev_signal;
+	} ev_;
+
+	short ev_events;
+	short ev_res;		/* result passed to event callback */
+	struct timeval ev_timeout;
+};
+#endif
+
 TAILQ_HEAD (event_list, event);
 
 #ifdef EVENT_DEFINED_TQENTRY_
