@@ -125,6 +125,23 @@ static const struct eventop *eventops[] = {
 	NULL
 };
 
+/**
+ * Therefore, in Linux, Libevent support select\poll\epoll system-call, and init the related callback in here.
+ * Because of 'extern', now we should go to the related file to get deeper !
+*/
+#if 0
+extern const struct eventop selectops;
+extern const struct eventop pollops;
+extern const struct eventop epollops;
+
+static const struct eventop *eventops[] = {
+	&epollops,
+	&pollops,
+	&selectops,
+	NULL
+};
+#endif
+
 /* Global state; deprecated */
 EVENT2_EXPORT_SYMBOL
 struct event_base *event_global_current_base_ = NULL;
@@ -710,10 +727,13 @@ event_base_new_with_config(const struct event_config *cfg)
 		    event_is_method_disabled(eventops[i]->name))
 			continue;
 
-		// base->evsel will be overwrite by the 'eventops[i]' follow,  why ???
+		// base->evsel will be overwrite by the 'eventops[i]' follow ?
+		// NO ! once process can only comes to here once ! For the follow line, base->evbase will be init leading jump out of for-loop
+		// Therefore one event_base can only use one backend !
 		base->evsel = eventops[i];
 
-		base->evbase = base->evsel->init(base);
+		// invork function init(base), once this is init, it will jump out of for-loop, because 'base->evbase != NULL'
+		base->evbase = base->evsel->init(base);	
 	}
 
 	if (base->evbase == NULL) {
@@ -1991,7 +2011,7 @@ event_base_loop(struct event_base *base, int flags)
 		EVBASE_RELEASE_LOCK(base, th_base_lock);
 		return -1;
 	}
-
+	/* reset some control flag, and time cache */
 	base->running_loop = 1;
 
 	clear_time_cache(base);
@@ -2011,7 +2031,7 @@ event_base_loop(struct event_base *base, int flags)
 		base->event_continue = 0;
 		base->n_deferreds_queued = 0;
 
-		/* Terminate the loop if we have been asked to */
+		/* Terminate the loop if we have been asked to. This can be triggered by callback */
 		if (base->event_gotterm) {
 			break;
 		}
@@ -2188,6 +2208,7 @@ event_assign(struct event *ev, struct event_base *base, evutil_socket_t fd, shor
 	ev->ev_ncalls = 0;
 	ev->ev_pncalls = NULL;
 
+// #define ev_closure ev_evcallback.evcb_closure
 	if (events & EV_SIGNAL) {
 		if ((events & (EV_READ|EV_WRITE|EV_CLOSED)) != 0) {
 			event_warnx("%s: EV_SIGNAL is not compatible with "

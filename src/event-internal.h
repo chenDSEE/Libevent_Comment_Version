@@ -209,7 +209,9 @@ struct event_base {
 	/** Function pointers and other data to describe this event_base's
 	 * backend. */
 	const struct eventop *evsel;
-	/** Pointer to backend-specific data. */
+	/** Pointer to backend-specific data. 
+	 *  This will not used in configing. But using in callback, or dispatching 
+	*/
 	void *evbase;
 
 	/** List of changes to tell backend about at next dispatch.  Only used
